@@ -38,4 +38,4 @@ wireless monitoring and feedback for a reptile tank
 
 ## License
 
-GPLv3, see [LICENSE](../LICENSE)
+GPLv3, see [LICENSE](./LICENSE)
