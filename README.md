@@ -4,7 +4,7 @@ wireless monitoring and feedback for a reptile tank
 
 ## Prereqs
 
-  * ESP8266 devkit (Adafruit Huzzah)
+  * ESP8266 devkit (e.g. Adafruit Huzzah)
   * a way to flash the ROM (cable, software)
   * 1 or 2 DHT11 sensors on (NodeMCU) GPIO 1+2 (Arduino 4+5)
   * NodeMCU floating point build with these modules: `cjson, dht, file, gpio, http, net, node, sntp, tmr, uart, wifi`
