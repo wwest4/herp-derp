@@ -17,7 +17,7 @@ wireless monitoring and feedback for a reptile tank
   
   Watch your data roll into Circonus, set alerts, and take care of your 🐍.
   
-  ![example circonus graph](https://github.com/wwest4/herp-derp/raw/master/images/circ-grph.png "Example Circonus Graph")
+  ![example circonus graph](https://raw.githubusercontent.com/wwest4/herp-derp/master/images/circ-graph.png "Example Circonus Graph")
   
 
 ## Usage
