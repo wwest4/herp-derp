@@ -34,6 +34,32 @@ wireless monitoring and feedback for a reptile tank
   * add light sensor data feed
   * add lighting feedback (PWM)
   * add pressure sensor data
+  
+## Quick ESP8266 Info
+
+Pinout from surface opposite of chip:
+
+```
+RST A_ EN 16 14 12 13 V+ Vbat GND
+
+TX_ RX #5 #4 #0 #2 15 3V LDO_ GND
+```
+(_Known Bug_ - GPIO #4 and #5 are swapped in Adafruit Huzzah Rev A chip)
+
+Dual-Use GPIO/I2C/SPI:
+
+* #0 - red led + boot switch, out only
+* #2 - blue led + boot mode detect, out only
+* #15 - pulldown, boot mode detect, out only
+* #16 - wake (connect to reset)
+
+Wiremap I used for running temp/humi sensor over twisted pair (use whatever you want):
+
+|Color|Use|
+|---|---|
+|solid blue|GND|
+|white/blue|3VCC|
+|solid orange|DAT|
 
 
 ## License
