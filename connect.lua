@@ -29,39 +29,43 @@ end
 
 function module.APNotFound()
     print('access point ' .. module.essid .. ' was not found')
+    wifi.sta.connect()
 end
 
 function module.fail()
     print('connection to ' .. module.essid .. ' failed')
+    wifi.sta.connect()
 end
 
 function module.gotIP()
     print('got address ' .. wifi.sta.getip())
-    module.appCallback()
 end
 
 local function registerCallbacks()
     -- register & monitor wifi events
-    wifi.sta.eventMonReg(wifi.STA_IDLE, module.idle)
-    wifi.sta.eventMonReg(wifi.STA_CONNECTING, module.inProgress)
-    wifi.sta.eventMonReg(wifi.STA_WRONGPWD, module.wrongPassword)
-    wifi.sta.eventMonReg(wifi.STA_APNOTFOUND, module.APNotFound)
-    wifi.sta.eventMonReg(wifi.STA_FAIL, module.fail)
-    wifi.sta.eventMonReg(wifi.STA_GOTIP, module.gotIP)
-  
-    wifi.sta.eventMonStart()
+    wifi.eventmon.register(wifi.STA_IDLE, module.idle)
+    wifi.eventmon.register(wifi.STA_CONNECTING, module.inProgress)
+    wifi.eventmon.register(wifi.STA_WRONGPWD, module.wrongPassword)
+    wifi.eventmon.register(wifi.STA_APNOTFOUND, module.APNotFound)
+    wifi.eventmon.register(wifi.STA_FAIL, module.fail)
+    wifi.eventmon.register(wifi.STA_GOTIP, module.gotIP)
 end
 
-function module.initiate(hostname, essid, password, callback)
-    module.hostname    = hostname
-    module.essid       = essid
-    module.password    = password
-    module.appCallback = callback
-  
+function module.initiate(hostname, essid, password)
     registerCallbacks()
-  
+
+    module.hostname = hostname
+    module.essid = essid
+
+    station_cfg = {
+        ssid = essid,
+        pwd = password,
+        save = true,
+        auto = true
+    }
+
     wifi.sta.sethostname(hostname)
-    wifi.sta.config(essid, password)
+    wifi.sta.config(station_cfg)
 end
 
 return module

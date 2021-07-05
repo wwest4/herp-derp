@@ -28,10 +28,10 @@ function module.HTTPTrap(config, data)
     then
         print('refusing to send an empty data set')
     else
-        json = cjson.encode(data)
+        json = sjson.encode(data)
         headers = 'Accept: application/json\r\n'
-        print('sending ' .. json .. ' to ' .. config.url)
-        http.put(config.url, headers, json, module.httpHandler)
+        print('sending ' .. json .. ' to ' .. config.metricsUrl)
+        http.put(config.metricsUrl, headers, json, module.httpHandler)
     end
 end
 

@@ -1,4 +1,4 @@
---Copyright © 2016 William West <william.a.west@gmail.com>
+--Copyright Â© 2016 William West <william.a.west@gmail.com>
 --
 --This is free software: you can redistribute it and/or modify
 --it under the terms of the GNU General Public License as published by
@@ -15,15 +15,17 @@
 
 local module = {
     hostname     = 'herp-derp',
-    essid        = 'my-wifi-ap',
-    password     = 'my password',
+    essid        = '<wifi AP ssid>',
+    password     = '<wifi AP password>',
     sensorOne    = 1, -- GPIO #4
     sensorTwo    = 2, -- GPIO #5
     interval     = 15000, -- in milliseconds; should be > 10000
     ntp          = 'time.nist.gov',
-    circonus     = {
-      url = 'http://trap.noit.circonus.net/module/httptrap/efa9eb1e-8a52-43b5-b491-277d4a11a3c5/mysecret'
-    }
+
+    -- only http fully supported for an endpoint; https may not work due to cipher constraints in client TLS'
+    -- see example wsgi script in scripts/circonus-metrics-proxy.py
+    metricsUrl   = 'https://<my host>/<my metrics proxy>'
 }
-  
+
 return module
+

@@ -12,7 +12,9 @@ function abortInit()
     -- if <CR> is pressed, call abortTest
     uart.on('data', '\r', abortTest, 0)
     -- start timer to execute startup function in 5 seconds
-    tmr.alarm(0,5000,0,startup)
+    if not tmr.create():alarm(5000, tmr.ALARM_SINGLE, startup) then
+        print('Failed to create startup timer')
+    end
 end
 
 function startup()
@@ -28,4 +30,6 @@ function startup()
 end
 
 -- call abortInit after 1s
-tmr.alarm(0,1000,0,abortInit)
+if not tmr.create():alarm(1000, tmr.ALARM_SINGLE, abortInit) then
+    print('Failed to create init timer')
+end
